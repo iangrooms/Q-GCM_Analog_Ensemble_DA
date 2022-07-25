@@ -1,0 +1,3 @@
+[submodule "q-gcm"]
+	path = q-gcm
+	url = https://github.com/GFDANU/q-gcm
