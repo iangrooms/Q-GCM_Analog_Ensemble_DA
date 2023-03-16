@@ -7,9 +7,9 @@ import numpy as np
 from tensorflow.keras import regularizers
 import sys
 import string
-import custom_layers
-split = custom_layers.Splitc3     
-relu_hmixa = custom_layers.Reluhmixa2
+# import custom_layers
+# split = custom_layers.Splitc3     
+# relu_hmixa = custom_layers.Reluhmixa2
 
 sys.path.append('/projects/luya7574/ml_qgcm/diagnosing_reconstructions/Scripts')
 from define_grid import *
@@ -44,10 +44,10 @@ class gAE(keras.Model):
         self.encoder = keras.Model(inputs= hmixaE.input, outputs = c1)
         
         latent_inputs = keras.Input(shape=((beta1),), name="00_latent")
-        c1 = split()(latent_inputs,beta1)
-        hmixaD = c1
+        # c1 = split()(latent_inputs,beta1)
+        # hmixaD = c1
 
-        hmixaD = layers.Dense(hmixaE.output.shape[1], kernel_regularizer=kr, bias_regularizer=br,activity_regularizer=ar)(hmixaD)
+        hmixaD = layers.Dense(hmixaE.output.shape[1], kernel_regularizer=kr, bias_regularizer=br,activity_regularizer=ar)(latent_inputs)
 
         # Atmosphere hmixa Decoder
         hmixaD = layers.Reshape((at_last_hidden_dimx, at_last_hidden_dimy, 32*atc1),name="hmixa_reshape")(hmixaD);   

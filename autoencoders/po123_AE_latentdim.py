@@ -7,9 +7,9 @@ import numpy as np
 from tensorflow.keras import regularizers
 import sys
 import string
-import custom_layers
-split = custom_layers.Splitc3
-relu_hmixa = custom_layers.Reluhmixa2
+# import custom_layers
+# split = custom_layers.Splitc3
+# relu_hmixa = custom_layers.Reluhmixa2
 
 
 sys.path.append('/projects/luya7574/ml_qgcm/diagnosing_reconstructions/Scripts')
@@ -52,10 +52,10 @@ class gAE(keras.Model):
         self.encoder = keras.Model(inputs = ocpoE.input, outputs = Z)
 
         latent_inputs = keras.Input(shape=(beta3,), name="00_latent")
-        c3=split()(latent_inputs,beta3)
-        Pod = c3
+        # c3=split()(latent_inputs,beta3)
+        # Pod = c3
 
-        Pod = layers.Dense(ocpoE.output.shape[1], kernel_regularizer=kr, bias_regularizer=br,activity_regularizer=ar)(Pod)
+        Pod = layers.Dense(ocpoE.output.shape[1], kernel_regularizer=kr, bias_regularizer=br,activity_regularizer=ar)(latent_inputs)
 
 
          # po Decoder
