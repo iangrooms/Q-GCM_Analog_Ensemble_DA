@@ -103,7 +103,6 @@ for k in range(Nt):
 
     # Save forecast to disk
     with h5py.File(mean_dir+"mean.h5", "r+", swmr=True) as mean_out:
-        mean_out = h5py.File(mean_dir+"mean.h5", "r+", swmr=True)
         mean_out["forecast/pa"][k,:,:,:] = pa_mean[:,1:,:]
         mean_out["forecast/hmixa"][k,:,:] = np.exp(hmixa_mean)
         mean_out["forecast/ast"][k,:,:] = ast_mean
